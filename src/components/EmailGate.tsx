@@ -13,7 +13,7 @@ interface EmailGateProps {
 }
 
 export const EmailGate = ({ source, onSuccess }: EmailGateProps) => {
-  const { email, setEmail, loading, emailError, setEmailError, subscribeToNewsletter } = useEmailSubscription();
+  const { email, setEmail, loading, emailError, setEmailError } = useEmailSubscription();
   const { grantAccess, hasAccess } = useToolsAccess();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [shake, setShake] = useState(false);

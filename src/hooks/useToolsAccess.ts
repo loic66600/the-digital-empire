@@ -36,7 +36,8 @@ export const useToolsAccess = () => {
         return false;
       }
       
-      const success = await subscribeToNewsletter(source);
+      // Passe l'email correctement à la fonction de souscription
+      const success = await subscribeToNewsletter(email, source);
       
       if (success) {
         // Enregistre l'email dans le localStorage pour maintenir l'accès
