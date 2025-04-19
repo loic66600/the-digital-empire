@@ -1,4 +1,5 @@
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import Navbar from "@/components/ui/navbar";
 import { EmailGate } from "@/components/EmailGate";
 import { useToolsAccess } from "@/hooks/useToolsAccess";
@@ -100,9 +101,16 @@ const courseDays: CourseDay[] = [
 
 const MiniCours = () => {
   const { hasAccess } = useToolsAccess();
-
+  const [accessGranted, setAccessGranted] = useState(false);
   const [activeDay, setActiveDay] = useState(1);
   const [completedDays, setCompletedDays] = useState<number[]>([]);
+
+  // Vérifie l'accès au chargement de la page
+  useEffect(() => {
+    if (hasAccess) {
+      setAccessGranted(true);
+    }
+  }, [hasAccess]);
 
   const markAsCompleted = (dayId: number) => {
     if (!completedDays.includes(dayId)) {
@@ -127,8 +135,16 @@ const MiniCours = () => {
   };
 
   const activeContent = courseDays.find(day => day.id === activeDay);
+  
+  // Gérer l'accès accordé via EmailGate
+  const handleAccessSuccess = () => {
+    setAccessGranted(true);
+  };
+  
+  // Vérifier si l'utilisateur doit voir le contenu ou le formulaire d'email
+  const showContent = hasAccess || accessGranted;
 
-  if (!hasAccess) {
+  if (!showContent) {
     return (
       <div className="min-h-screen flex flex-col bg-custom-off-white">
         <Navbar />
@@ -143,7 +159,7 @@ const MiniCours = () => {
           </div>
           <EmailGate 
             source="mini-course" 
-            onSuccess={() => {/* Access is automatically granted by the hook */}} 
+            onSuccess={handleAccessSuccess}
           />
         </div>
       </div>

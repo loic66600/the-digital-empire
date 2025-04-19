@@ -30,6 +30,13 @@ export const EmailGate = ({ source, onSuccess }: EmailGateProps) => {
     e.preventDefault();
     setEmailError(null);
     
+    if (!email || email.trim() === '') {
+      setEmailError("Veuillez entrer une adresse email");
+      setShake(true);
+      setTimeout(() => setShake(false), 650);
+      return;
+    }
+    
     const success = await grantAccess(email, source);
     if (success) {
       setIsSubmitted(true);
