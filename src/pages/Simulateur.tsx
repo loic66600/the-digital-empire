@@ -1,7 +1,15 @@
+
 import { useState } from "react";
 import Navbar from "@/components/ui/navbar";
 import { Calculator } from "lucide-react";
 import { EmailGate } from "@/components/EmailGate";
+
+// Define the SimulationResult interface
+interface SimulationResult {
+  revenuMensuel: number;
+  revenuAnnuel: number;
+  audienceRequisePourCible: number;
+}
 
 const platformOptions = [
   { value: "instagram", label: "Instagram", tauxConversion: 0.02, revenuMoyen: 25 },

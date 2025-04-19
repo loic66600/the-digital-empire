@@ -7,7 +7,7 @@ export const useEmailSubscription = () => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
 
-  const subscribeToNewsletter = async (source: 'quiz' | 'simulator' | 'mini-course') => {
+  const subscribeToNewsletter = async (source: 'quiz' | 'simulator' | 'mini-course' | 'ideas') => {
     if (!email) {
       toast({
         title: "Erreur",
