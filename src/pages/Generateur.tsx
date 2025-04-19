@@ -2,8 +2,6 @@ import { useState } from "react";
 import Navbar from "@/components/ui/navbar";
 import { EmailGate } from "@/components/EmailGate";
 import { useToolsAccess } from "@/hooks/useToolsAccess";
-import { List, Gift, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
 
 interface IdeaType {
   id: number;
@@ -123,7 +121,10 @@ const Generateur = () => {
               Trouvez l'inspiration pour votre prochain contenu à fort potentiel d'engagement
             </p>
           </div>
-          <EmailGate source="ideas" onSuccess={() => setHasAccess(true)} />
+          <EmailGate 
+            source="ideas" 
+            onSuccess={() => {/* Access is automatically granted by the hook */}} 
+          />
         </div>
       </div>
     );

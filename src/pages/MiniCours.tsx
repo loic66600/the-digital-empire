@@ -141,7 +141,10 @@ const MiniCours = () => {
               Un guide pratique pour créer votre présence en ligne et commencer à la monétiser
             </p>
           </div>
-          <EmailGate source="mini-course" onSuccess={() => setHasAccess(true)} />
+          <EmailGate 
+            source="mini-course" 
+            onSuccess={() => {/* Access is automatically granted by the hook */}} 
+          />
         </div>
       </div>
     );
@@ -162,7 +165,6 @@ const MiniCours = () => {
         </div>
         
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {/* Sidebar navigation */}
           <div className="md:col-span-1">
             <div className="bg-white rounded-xl shadow-md overflow-hidden sticky top-24">
               <div className="p-4 bg-custom-blue text-white">
@@ -211,7 +213,6 @@ const MiniCours = () => {
             </div>
           </div>
           
-          {/* Main content */}
           <div className="md:col-span-2">
             {activeContent && (
               <div className="bg-white rounded-xl shadow-lg overflow-hidden fade-in">

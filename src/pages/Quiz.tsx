@@ -315,7 +315,7 @@ const Quiz = () => {
                     Répondez à quelques questions pour identifier le business model qui vous correspond le mieux
                   </p>
                 </div>
-                <EmailGate source="quiz" onSuccess={() => setHasAccess(true)} />
+                <EmailGate source="quiz" onSuccess={() => {/* Access is automatically granted by the hook */}} />
               </div>
             </div>
           ) : (
