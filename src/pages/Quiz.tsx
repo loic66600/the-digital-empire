@@ -1,7 +1,7 @@
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/ui/navbar";
+import { EmailGate } from "@/components/EmailGate";
 import { BookOpen, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -236,6 +236,27 @@ const profiles: ResultProfile[] = [
 ];
 
 const Quiz = () => {
+  const [hasAccess, setHasAccess] = useState(false);
+
+  if (!hasAccess) {
+    return (
+      <div className="min-h-screen flex flex-col bg-custom-off-white">
+        <Navbar />
+        <div className="container mx-auto px-4 py-12">
+          <div className="text-center mb-10">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 text-custom-blue">
+              Quiz : Découvrez votre modèle business idéal
+            </h1>
+            <p className="text-lg text-gray-600">
+              Répondez à quelques questions pour identifier le business model qui vous correspond le mieux
+            </p>
+          </div>
+          <EmailGate source="quiz" onSuccess={() => setHasAccess(true)} />
+        </div>
+      </div>
+    );
+  }
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [responses, setResponses] = useState<Record<number, string>>({});
   const [showResults, setShowResults] = useState(false);
@@ -256,7 +277,6 @@ const Quiz = () => {
   const calculateResult = (finalResponses: Record<number, string>) => {
     const finalScores = { affiliation: 0, ugc: 0, produits: 0 };
     
-    // Calculer les scores pour chaque type de business
     questions.forEach(question => {
       const selectedOptionId = finalResponses[question.id];
       if (selectedOptionId) {
@@ -271,7 +291,6 @@ const Quiz = () => {
     
     setScores(finalScores);
     
-    // Déterminer le profil avec le score le plus élevé
     let highestScore = 0;
     let winningProfile = "";
     

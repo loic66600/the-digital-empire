@@ -1,13 +1,7 @@
-
 import { useState } from "react";
 import Navbar from "@/components/ui/navbar";
 import { Calculator } from "lucide-react";
-
-interface SimulationResult {
-  revenuMensuel: number;
-  revenuAnnuel: number;
-  audienceRequisePourCible: number;
-}
+import { EmailGate } from "@/components/EmailGate";
 
 const platformOptions = [
   { value: "instagram", label: "Instagram", tauxConversion: 0.02, revenuMoyen: 25 },
@@ -29,6 +23,26 @@ const Simulateur = () => {
   const [frequence, setFrequence] = useState(frequencyOptions[0].value);
   const [revenuCible, setRevenuCible] = useState(3000);
   const [resultats, setResultats] = useState<SimulationResult | null>(null);
+  const [hasAccess, setHasAccess] = useState(false);
+
+  if (!hasAccess) {
+    return (
+      <div className="min-h-screen flex flex-col bg-custom-off-white">
+        <Navbar />
+        <div className="container mx-auto px-4 py-12">
+          <div className="text-center mb-10">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 text-custom-blue">
+              Simulateur de revenus
+            </h1>
+            <p className="text-lg text-gray-600">
+              Estimez votre potentiel de revenus en fonction de votre audience et votre stratégie
+            </p>
+          </div>
+          <EmailGate source="simulator" onSuccess={() => setHasAccess(true)} />
+        </div>
+      </div>
+    );
+  }
 
   const handleSimulation = () => {
     const plateformeSelectionnee = platformOptions.find(p => p.value === plateforme);

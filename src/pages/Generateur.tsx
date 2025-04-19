@@ -1,6 +1,6 @@
-
 import { useState } from "react";
 import Navbar from "@/components/ui/navbar";
+import { EmailGate } from "@/components/EmailGate";
 import { List, Gift, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,6 @@ interface IdeaType {
   platform: string;
 }
 
-// Ces données seraient idéalement stockées dans Supabase
 const viralIdeas: IdeaType[] = [
   // Instagram
   {
@@ -108,6 +107,27 @@ const viralIdeas: IdeaType[] = [
 ];
 
 const Generateur = () => {
+  const [hasAccess, setHasAccess] = useState(false);
+
+  if (!hasAccess) {
+    return (
+      <div className="min-h-screen flex flex-col bg-custom-off-white">
+        <Navbar />
+        <div className="container mx-auto px-4 py-12">
+          <div className="text-center mb-10">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 text-custom-blue">
+              Générateur d'idées virales
+            </h1>
+            <p className="text-lg text-gray-600">
+              Trouvez l'inspiration pour votre prochain contenu à fort potentiel d'engagement
+            </p>
+          </div>
+          <EmailGate source="ideas" onSuccess={() => setHasAccess(true)} />
+        </div>
+      </div>
+    );
+  }
+
   const [selectedPlatform, setSelectedPlatform] = useState("instagram");
   const [currentIdea, setCurrentIdea] = useState<IdeaType | null>(null);
   const [usedIdeas, setUsedIdeas] = useState<number[]>([]);

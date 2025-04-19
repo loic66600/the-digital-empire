@@ -1,6 +1,6 @@
-
 import { useState } from "react";
 import Navbar from "@/components/ui/navbar";
+import { EmailGate } from "@/components/EmailGate";
 import { ArrowRight, BookOpen, CheckCircle2 } from "lucide-react";
 
 interface CourseDay {
@@ -98,6 +98,27 @@ const courseDays: CourseDay[] = [
 ];
 
 const MiniCours = () => {
+  const [hasAccess, setHasAccess] = useState(false);
+
+  if (!hasAccess) {
+    return (
+      <div className="min-h-screen flex flex-col bg-custom-off-white">
+        <Navbar />
+        <div className="container mx-auto px-4 py-12">
+          <div className="text-center mb-10">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 text-custom-blue">
+              Mini-Cours : Lancer votre business en 7 jours
+            </h1>
+            <p className="text-lg text-gray-600">
+              Un guide pratique pour créer votre présence en ligne et commencer à la monétiser
+            </p>
+          </div>
+          <EmailGate source="mini-course" onSuccess={() => setHasAccess(true)} />
+        </div>
+      </div>
+    );
+  }
+
   const [activeDay, setActiveDay] = useState(1);
   const [completedDays, setCompletedDays] = useState<number[]>([]);
 
