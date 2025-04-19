@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { Info } from "lucide-react";
 import Navbar from "@/components/ui/navbar";
 import { EmailGate } from "@/components/EmailGate";
 import { useToolsAccess } from "@/hooks/useToolsAccess";
@@ -7,6 +8,12 @@ import { SimulatorHeader } from "@/components/simulator/SimulatorHeader";
 import { SimulationForm } from "@/components/simulator/SimulationForm";
 import { SimulationResults } from "@/components/simulator/SimulationResults";
 import { SimulationResult } from "@/types/simulator";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const platformOptions = [
   { value: "instagram", label: "Instagram", tauxConversion: 0.02, revenuMoyen: 25 },
@@ -17,9 +24,10 @@ const platformOptions = [
 ];
 
 const frequencyOptions = [
-  { value: "1", label: "1 produit / mois", multiplicateur: 1 },
-  { value: "2", label: "2 produits / mois", multiplicateur: 1.8 },
-  { value: "4", label: "4 produits / mois", multiplicateur: 3 },
+  { value: "1", label: "1 fois / mois (rare, débutant)", multiplicateur: 1 },
+  { value: "2", label: "2 fois / mois (promo mi-mois & fin de mois)", multiplicateur: 2 },
+  { value: "4", label: "4 fois / mois (1 par semaine)", multiplicateur: 4 },
+  { value: "8", label: "8 fois / mois (2 par semaine, contenu intensif)", multiplicateur: 8 },
 ];
 
 const Simulateur = () => {

@@ -1,7 +1,12 @@
-
 import { useState } from "react";
-import { Calculator } from "lucide-react";
+import { Calculator, Info } from "lucide-react";
 import { SimulationResult, PlatformOption, FrequencyOption } from "@/types/simulator";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface SimulationFormProps {
   platformOptions: PlatformOption[];
@@ -87,8 +92,18 @@ export const SimulationForm = ({
         </div>
         
         <div>
-          <label htmlFor="frequence" className="block text-sm font-medium text-gray-700 mb-1">
-            Fréquence de lancement
+          <label htmlFor="frequence" className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+            Fréquence de vente
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Info className="h-4 w-4 text-gray-400" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="max-w-xs">Combien de fois par mois proposes-tu un produit, une offre ou un lien affilié à ton audience ?</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </label>
           <select
             id="frequence"

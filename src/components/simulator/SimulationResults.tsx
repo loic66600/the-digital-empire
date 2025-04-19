@@ -17,6 +17,8 @@ export const SimulationResults = ({ results, revenuCible }: SimulationResultsPro
     );
   }
 
+  const showBoostMessage = results.revenuMensuel < 1000;
+
   return (
     <div className="space-y-6 fade-in">
       <div className="bg-white border border-gray-200 rounded-lg p-4">
@@ -39,6 +41,14 @@ export const SimulationResults = ({ results, revenuCible }: SimulationResultsPro
           {results.audienceRequisePourCible.toLocaleString('fr-FR')} abonnés requis
         </p>
       </div>
+
+      {showBoostMessage && (
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <p className="text-sm text-gray-700">
+            <strong>💡 Astuce :</strong> En augmentant votre fréquence à 1 offre par semaine, vous pourriez générer jusqu'à {(results.revenuMensuel * 4).toLocaleString('fr-FR')} € par mois avec la même audience !
+          </p>
+        </div>
+      )}
       
       <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
         <p className="text-sm text-gray-700">
