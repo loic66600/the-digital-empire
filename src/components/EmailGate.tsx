@@ -37,7 +37,9 @@ export const EmailGate = ({ source, onSuccess }: EmailGateProps) => {
       return;
     }
     
+    // Directement appeler grantAccess avec l'email saisi
     const success = await grantAccess(email, source);
+    
     if (success) {
       setIsSubmitted(true);
       onSuccess();

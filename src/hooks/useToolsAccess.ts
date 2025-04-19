@@ -27,6 +27,15 @@ export const useToolsAccess = () => {
         return true;
       }
       
+      if (!email || email.trim() === '') {
+        toast({
+          title: "Erreur",
+          description: "Veuillez entrer une adresse email valide",
+          variant: "destructive"
+        });
+        return false;
+      }
+      
       const success = await subscribeToNewsletter(source);
       
       if (success) {
