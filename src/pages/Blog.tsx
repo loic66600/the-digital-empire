@@ -7,27 +7,27 @@ const blogCategories = [
   { 
     name: "Marketing Digital", 
     description: "Stratégies et techniques pour développer votre présence en ligne",
-    link: "https://www.digismartlab.com/blog/marketing-digital"
+    link: "https://www.digismartlab.com/blog/category/marketing-digital"
   },
   { 
     name: "IA", 
     description: "Découvertes et applications de l'Intelligence Artificielle",
-    link: "https://www.digismartlab.com/blog/ia"
+    link: "https://www.digismartlab.com/blog/category/intelligence-artificielle"
   },
   { 
     name: "Productivité Digitale", 
     description: "Outils et méthodes pour optimiser votre efficacité",
-    link: "https://www.digismartlab.com/blog/productivite-digitale"
+    link: "https://www.digismartlab.com/blog/category/productivit-digital"
   },
   { 
     name: "Trucs & Astuces", 
     description: "Conseils pratiques et raccourcis pour entrepreneurs digitaux",
-    link: "https://www.digismartlab.com/blog/trucs-et-astuces"
+    link: "https://www.digismartlab.com/blog/category/trucs-et-astuces"
   },
   { 
     name: "Boîte à Outils", 
     description: "Revues et recommandations d'outils essentiels",
-    link: "https://www.digismartlab.com/blog/boite-a-outils"
+    link: "https://www.digismartlab.com/blog/category/la-bote--outils---trouver-les-meilleurs-logiciels-et-ressources"
   }
 ];
 
