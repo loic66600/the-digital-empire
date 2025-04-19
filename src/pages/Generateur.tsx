@@ -275,7 +275,7 @@ const Generateur = () => {
                     Accédez à notre banque de plus de 100 idées de contenu viral triées par niche et taux d'engagement. Mises à jour chaque mois selon les dernières tendances.
                   </p>
                   <Link
-                    to="/offre"
+                    to="https://www.notion.so/1daef76d25118095b08bebc287c2d5d6?v=1daef76d251180df91d4000c5a913a42&pvs=4"
                     className="bg-white text-custom-blue hover:bg-gray-100 transition-colors duration-300 inline-flex items-center font-medium py-2 px-4 rounded-md"
                   >
                     En savoir plus <ArrowRight className="ml-2 h-4 w-4" />
