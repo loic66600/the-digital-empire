@@ -228,14 +228,14 @@ const Generateur = () => {
                       Générer une autre idée
                     </button>
                     
-                    <Link
-                      to="https://www.notion.so/1daef76d25118095b08bebc287c2d5d6?v=1daef76d251180df91d4000c5a913a42&pvs=4"
+                    <a
+                      href="https://www.notion.so/1daef76d25118095b08bebc287c2d5d6?v=1daef76d251180df91d4000c5a913a42&pvs=4"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-white text-custom-blue hover:bg-gray-100 transition-colors duration-300 inline-flex items-center font-medium py-2 px-4 rounded-md"
                     >
                       En savoir plus <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
+                    </a>
                   </div>
                 </div>
               ) : (
