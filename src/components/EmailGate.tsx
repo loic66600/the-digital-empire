@@ -14,27 +14,35 @@ interface EmailGateProps {
 
 export const EmailGate = ({ source, onSuccess }: EmailGateProps) => {
   const { email, setEmail, loading, emailError, setEmailError, subscribeToNewsletter } = useEmailSubscription();
-  const { grantAccess } = useToolsAccess();
+  const { grantAccess, hasAccess } = useToolsAccess();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [shake, setShake] = useState(false);
+
+  // Si l'utilisateur a déjà accès, déclencher onSuccess immédiatement
+  useEffect(() => {
+    if (hasAccess) {
+      onSuccess();
+      setIsSubmitted(true);
+    }
+  }, [hasAccess, onSuccess]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setEmailError(null);
     
-    const success = await subscribeToNewsletter(source);
+    const success = await grantAccess(email, source);
     if (success) {
-      await grantAccess(email, source);
       setIsSubmitted(true);
       onSuccess();
     } else if (emailError) {
-      // Show gentle shake animation
+      // Animation douce de secousse
       setShake(true);
       setTimeout(() => setShake(false), 650);
     }
   };
 
-  if (isSubmitted) return null;
+  // Si déjà soumis ou a déjà accès, ne pas afficher le formulaire
+  if (isSubmitted || hasAccess) return null;
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto">

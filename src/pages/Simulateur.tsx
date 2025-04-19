@@ -26,18 +26,27 @@ const Simulateur = () => {
   const { hasAccess } = useToolsAccess();
   const [resultats, setResultats] = useState<SimulationResult | null>(null);
   const [revenuCible, setRevenuCible] = useState(3000);
+  const [accessGranted, setAccessGranted] = useState(false);
 
   const handleSimulationResult = (results: SimulationResult) => {
     setResultats(results);
   };
 
-  if (!hasAccess) {
+  // Gestion de l'accès aux outils
+  const handleAccessSuccess = () => {
+    setAccessGranted(true);
+  };
+
+  // Vérifie à la fois hasAccess du hook et l'état local
+  const showSimulator = hasAccess || accessGranted;
+
+  if (!showSimulator) {
     return (
       <div className="min-h-screen flex flex-col bg-custom-off-white">
         <Navbar />
         <div className="container mx-auto px-4 py-12">
           <SimulatorHeader />
-          <EmailGate source="simulator" onSuccess={() => {}} />
+          <EmailGate source="simulator" onSuccess={handleAccessSuccess} />
         </div>
       </div>
     );
