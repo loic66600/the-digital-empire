@@ -1,6 +1,6 @@
 
 import Navbar from "@/components/ui/navbar";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { CheckCircle2, ArrowRight, ExternalLink } from "lucide-react";
 
 const Offre = () => {
   return (
@@ -14,10 +14,10 @@ const Offre = () => {
               Offre Exclusive
             </span>
             <h1 className="text-3xl md:text-5xl font-bold mb-6 text-custom-blue">
-              Masterclass Business Digital
+              Formation Empire Digital
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              La formation complète pour créer, développer et monétiser votre présence sur les réseaux sociaux en moins de 90 jours
+              La formation complète pour créer, développer et monétiser votre présence en ligne en moins de 90 jours
             </p>
           </div>
           
@@ -108,36 +108,36 @@ const Offre = () => {
                     <li className="flex items-start">
                       <CheckCircle2 className="h-5 w-5 text-custom-gold mr-2 flex-shrink-0 mt-0.5" />
                       <div>
-                        <span className="font-medium">Formation complète en 6 modules</span>
-                        <p className="text-white/80 text-sm">Plus de 30 heures de contenu structuré et actionnable</p>
+                        <span className="font-medium">Formation complète en 29 modules</span>
+                        <p className="text-white/80 text-sm">Plus de 50 heures de contenu structuré et actionnable</p>
                       </div>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle2 className="h-5 w-5 text-custom-gold mr-2 flex-shrink-0 mt-0.5" />
                       <div>
-                        <span className="font-medium">12 sessions de coaching en groupe</span>
-                        <p className="text-white/80 text-sm">Questions-réponses et résolution de problèmes spécifiques</p>
+                        <span className="font-medium">12 produits PLR offerts</span>
+                        <p className="text-white/80 text-sm">Prêts à être utilisés et personnalisés immédiatement</p>
                       </div>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle2 className="h-5 w-5 text-custom-gold mr-2 flex-shrink-0 mt-0.5" />
                       <div>
-                        <span className="font-medium">Bibliothèque de scripts et modèles</span>
-                        <p className="text-white/80 text-sm">Emails, publications, bios, pitchs de vente prêts à l'emploi</p>
+                        <span className="font-medium">Tunnel de vente prêt à l'emploi</span>
+                        <p className="text-white/80 text-sm">Stratégie de conversion clé en main</p>
                       </div>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle2 className="h-5 w-5 text-custom-gold mr-2 flex-shrink-0 mt-0.5" />
                       <div>
-                        <span className="font-medium">Communauté privée à vie</span>
+                        <span className="font-medium">Coaching personnalisé</span>
+                        <p className="text-white/80 text-sm">Suivi individuel pour maximiser vos résultats</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle2 className="h-5 w-5 text-custom-gold mr-2 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-medium">Communauté de soutien</span>
                         <p className="text-white/80 text-sm">Réseau d'entraide et opportunités de collaboration</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle2 className="h-5 w-5 text-custom-gold mr-2 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <span className="font-medium">Bonus: 100 idées de contenu viral par plateforme</span>
-                        <p className="text-white/80 text-sm">Mises à jour mensuellement selon les tendances</p>
                       </div>
                     </li>
                   </ul>
@@ -145,12 +145,12 @@ const Offre = () => {
                 
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 flex flex-col">
                   <div className="mb-6">
-                    <p className="text-lg font-medium text-white/90 mb-1">Prix normal: <span className="line-through">1997€</span></p>
+                    <p className="text-lg font-medium text-white/90 mb-1">Prix normal: <span className="line-through">897€</span></p>
                     <div className="flex items-end">
-                      <span className="text-3xl font-bold">997€</span>
+                      <span className="text-3xl font-bold">597€</span>
                       <span className="text-white/80 ml-2">paiement unique</span>
                     </div>
-                    <p className="text-sm text-white/70 mt-1">Ou 3 paiements de 397€</p>
+                    <p className="text-sm text-white/70 mt-1">Offre limitée - Places en nombre restreint</p>
                   </div>
                   
                   <ul className="space-y-2 mb-6">
@@ -169,12 +169,12 @@ const Offre = () => {
                   </ul>
                   
                   <a 
-                    href="https://www.systeme.io/" 
+                    href="https://www.digismartlab.com/4447e85c-9d54becd" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="mt-auto bg-custom-gold hover:bg-amber-500 text-white font-bold py-4 px-6 rounded-lg text-center transition-colors duration-300 flex items-center justify-center"
                   >
-                    Accéder à la formation <ArrowRight className="ml-2 h-5 w-5" />
+                    Accéder à la formation <ExternalLink className="ml-2 h-5 w-5" />
                   </a>
                   
                   <p className="text-center text-sm text-white/70 mt-4">
@@ -240,16 +240,16 @@ const Offre = () => {
           
           <div className="mt-16 text-center">
             <a 
-              href="https://www.systeme.io/" 
+              href="https://www.digismartlab.com/4447e85c-9d54becd" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="btn-secondary inline-flex items-center justify-center font-bold py-4 px-8 text-lg"
             >
-              Rejoindre la Masterclass <ArrowRight className="ml-2 h-5 w-5" />
+              Rejoindre la Formation <ExternalLink className="ml-2 h-5 w-5" />
             </a>
             
             <p className="mt-4 text-sm text-gray-500">
-              Des questions ? Contactez-nous à support@business-digital.fr
+              Des questions ? Contactez-nous à contact@digismartlab.com
             </p>
           </div>
         </div>

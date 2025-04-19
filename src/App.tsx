@@ -10,6 +10,7 @@ import MiniCours from "./pages/MiniCours";
 import Generateur from "./pages/Generateur";
 import Offre from "./pages/Offre";
 import NotFound from "./pages/NotFound";
+import Blog from "./pages/Blog";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/mini-cours" element={<MiniCours />} />
           <Route path="/generateur" element={<Generateur />} />
           <Route path="/offre" element={<Offre />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

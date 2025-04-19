@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, BookOpen, Gift, List } from "lucide-react";
 import Navbar from "@/components/ui/navbar";
@@ -13,7 +12,7 @@ const Index = () => {
         <div className="container mx-auto px-4 md:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-3xl md:text-5xl font-bold mb-6">
-              Lancez votre empire digital sur les réseaux sociaux
+              Lancez votre empire digital avec Empire Digital
             </h1>
             <p className="text-lg md:text-xl opacity-90 mb-8">
               Découvrez comment créer un business en ligne rentable grâce à nos outils et ressources exclusifs
@@ -125,11 +124,27 @@ const Index = () => {
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-2 mb-4">
-              <span className="text-xl font-bold">Business<span className="text-custom-gold">Digital</span></span>
+              <span className="text-xl font-bold">Empire<span className="text-custom-gold">Digital</span></span>
             </div>
             <p className="text-sm text-gray-400">
-              © {new Date().getFullYear()} BusinessDigital. Tous droits réservés.
+              © {new Date().getFullYear()} Empire Digital. Tous droits réservés.
             </p>
+            <div className="mt-4 space-x-4">
+              <a 
+                href="https://www.digismartlab.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-300 hover:text-white"
+              >
+                Site web
+              </a>
+              <a 
+                href="mailto:contact@digismartlab.com" 
+                className="text-gray-300 hover:text-white"
+              >
+                Contact
+              </a>
+            </div>
           </div>
         </div>
       </footer>
