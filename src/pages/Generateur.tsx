@@ -2,6 +2,8 @@ import { useState } from "react";
 import Navbar from "@/components/ui/navbar";
 import { EmailGate } from "@/components/EmailGate";
 import { useToolsAccess } from "@/hooks/useToolsAccess";
+import { List, Gift, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface IdeaType {
   id: number;
@@ -135,24 +137,17 @@ const Generateur = () => {
   const [usedIdeas, setUsedIdeas] = useState<number[]>([]);
   
   const generateIdea = () => {
-    // Filtrer les idées pour la plateforme sélectionnée
     const platformIdeas = viralIdeas.filter(idea => idea.platform === selectedPlatform);
-    
-    // Filtrer les idées déjà utilisées
     const availableIdeas = platformIdeas.filter(idea => !usedIdeas.includes(idea.id));
     
-    // Si toutes les idées ont été utilisées, réinitialiser
     if (availableIdeas.length === 0) {
       setUsedIdeas([]);
       setCurrentIdea(platformIdeas[Math.floor(Math.random() * platformIdeas.length)]);
       return;
     }
     
-    // Sélectionner une idée aléatoire parmi celles disponibles
     const randomIdea = availableIdeas[Math.floor(Math.random() * availableIdeas.length)];
     setCurrentIdea(randomIdea);
-    
-    // Ajouter l'idée aux idées utilisées
     setUsedIdeas([...usedIdeas, randomIdea.id]);
   };
   
