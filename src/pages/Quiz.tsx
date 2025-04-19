@@ -87,9 +87,12 @@ const Quiz = () => {
         <div className="max-w-3xl mx-auto">
           {!showContent ? (
             <div className="text-center mb-10">
-              <h1 className="text-3xl md:text-4xl font-bold mb-4 text-custom-blue">
-                Quiz : Découvrez votre modèle business idéal
+              <h1 className="text-4xl font-bold mb-4 text-custom-blue">
+                Pour quel Business est-tu fait ?
               </h1>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-custom-blue">
+                Quiz : Découvrez votre modèle business idéal
+              </h2>
               <p className="text-lg text-gray-600">
                 Répondez à quelques questions pour identifier le business model qui vous correspond le mieux
               </p>
