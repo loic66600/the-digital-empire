@@ -1,4 +1,5 @@
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import Navbar from "@/components/ui/navbar";
 import { EmailGate } from "@/components/EmailGate";
 import { useToolsAccess } from "@/hooks/useToolsAccess";
@@ -109,7 +110,36 @@ const viralIdeas: IdeaType[] = [
 
 const Generateur = () => {
   const { hasAccess, grantAccess } = useToolsAccess();
+  // Initialize all state hooks regardless of hasAccess condition
+  const [selectedPlatform, setSelectedPlatform] = useState("instagram");
+  const [currentIdea, setCurrentIdea] = useState<IdeaType | null>(null);
+  const [usedIdeas, setUsedIdeas] = useState<number[]>([]);
+  
+  const generateIdea = () => {
+    if (!hasAccess) return; // Early return if no access
+    
+    const platformIdeas = viralIdeas.filter(idea => idea.platform === selectedPlatform);
+    const availableIdeas = platformIdeas.filter(idea => !usedIdeas.includes(idea.id));
+    
+    if (availableIdeas.length === 0) {
+      setUsedIdeas([]);
+      setCurrentIdea(platformIdeas[Math.floor(Math.random() * platformIdeas.length)]);
+      return;
+    }
+    
+    const randomIdea = availableIdeas[Math.floor(Math.random() * availableIdeas.length)];
+    setCurrentIdea(randomIdea);
+    setUsedIdeas([...usedIdeas, randomIdea.id]);
+  };
+  
+  const platformOptions = [
+    { value: "instagram", label: "Instagram" },
+    { value: "tiktok", label: "TikTok" },
+    { value: "youtube", label: "YouTube" },
+    { value: "linkedin", label: "LinkedIn" },
+  ];
 
+  // Render different content based on hasAccess
   if (!hasAccess) {
     return (
       <div className="min-h-screen flex flex-col bg-custom-off-white">
@@ -131,32 +161,6 @@ const Generateur = () => {
       </div>
     );
   }
-
-  const [selectedPlatform, setSelectedPlatform] = useState("instagram");
-  const [currentIdea, setCurrentIdea] = useState<IdeaType | null>(null);
-  const [usedIdeas, setUsedIdeas] = useState<number[]>([]);
-  
-  const generateIdea = () => {
-    const platformIdeas = viralIdeas.filter(idea => idea.platform === selectedPlatform);
-    const availableIdeas = platformIdeas.filter(idea => !usedIdeas.includes(idea.id));
-    
-    if (availableIdeas.length === 0) {
-      setUsedIdeas([]);
-      setCurrentIdea(platformIdeas[Math.floor(Math.random() * platformIdeas.length)]);
-      return;
-    }
-    
-    const randomIdea = availableIdeas[Math.floor(Math.random() * availableIdeas.length)];
-    setCurrentIdea(randomIdea);
-    setUsedIdeas([...usedIdeas, randomIdea.id]);
-  };
-  
-  const platformOptions = [
-    { value: "instagram", label: "Instagram" },
-    { value: "tiktok", label: "TikTok" },
-    { value: "youtube", label: "YouTube" },
-    { value: "linkedin", label: "LinkedIn" },
-  ];
 
   return (
     <div className="min-h-screen flex flex-col bg-custom-off-white">
