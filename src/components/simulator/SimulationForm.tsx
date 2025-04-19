@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Calculator, Info } from "lucide-react";
 import { SimulationResult, PlatformOption, FrequencyOption } from "@/types/simulator";
@@ -94,13 +95,15 @@ export const SimulationForm = ({
         <div>
           <label htmlFor="frequence" className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
             Fréquence de vente
-            <TooltipProvider>
+            <TooltipProvider delayDuration={100}>
               <Tooltip>
-                <TooltipTrigger>
-                  <Info className="h-4 w-4 text-gray-400" />
+                <TooltipTrigger asChild>
+                  <button type="button" className="inline-flex items-center focus:outline-none">
+                    <Info className="h-4 w-4 text-gray-400 hover:text-gray-600" />
+                  </button>
                 </TooltipTrigger>
-                <TooltipContent>
-                  <p className="max-w-xs">Combien de fois par mois proposes-tu un produit, une offre ou un lien affilié à ton audience ?</p>
+                <TooltipContent side="right" className="bg-white p-2 shadow-lg rounded-md border max-w-xs">
+                  <p>Combien de fois par mois proposes-tu un produit, une offre ou un lien affilié à ton audience ?</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
