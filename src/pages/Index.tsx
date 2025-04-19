@@ -1,19 +1,15 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, BookOpen, Gift, List } from "lucide-react";
 import Navbar from "@/components/ui/navbar";
-
 const Index = () => {
-  return (
-    <div className="min-h-screen flex flex-col bg-custom-off-white">
+  return <div className="min-h-screen flex flex-col bg-custom-off-white">
       <Navbar />
       
       {/* Hero Section */}
       <section className="bg-custom-blue text-white py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-3xl md:text-5xl font-bold mb-6">
-              Lancez votre empire digital avec Empire Digital
-            </h1>
+            <h1 className="text-3xl md:text-5xl font-bold mb-6">Lancez votre Business digital avec Empire Digital</h1>
             <p className="text-lg md:text-xl opacity-90 mb-8">
               Découvrez comment créer un business en ligne rentable grâce à nos outils et ressources exclusifs
             </p>
@@ -130,26 +126,16 @@ const Index = () => {
               © {new Date().getFullYear()} Empire Digital. Tous droits réservés.
             </p>
             <div className="mt-4 space-x-4">
-              <a 
-                href="https://www.digismartlab.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-gray-300 hover:text-white"
-              >
+              <a href="https://www.digismartlab.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
                 Site web
               </a>
-              <a 
-                href="mailto:contact@digismartlab.com" 
-                className="text-gray-300 hover:text-white"
-              >
+              <a href="mailto:contact@digismartlab.com" className="text-gray-300 hover:text-white">
                 Contact
               </a>
             </div>
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
