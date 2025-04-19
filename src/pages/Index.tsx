@@ -9,7 +9,8 @@ const Index = () => {
       <section className="bg-custom-blue text-white py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-3xl md:text-5xl font-bold mb-6">Lancez votre Business digital avec Empire Digital</h1>
+            <h1 className="text-3xl md:text-5xl font-bold mb-6">Lancez votre Business digital avec Empire Digital
+by DigiSmartLab</h1>
             <p className="text-lg md:text-xl opacity-90 mb-8">
               Découvrez comment créer un business en ligne rentable grâce à nos outils et ressources exclusifs
             </p>
