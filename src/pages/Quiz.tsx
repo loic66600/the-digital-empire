@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import Navbar from "@/components/ui/navbar";
 import { EmailGate } from "@/components/EmailGate";
@@ -85,11 +84,14 @@ const Quiz = () => {
       
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-10">
+            <h1 className="text-4xl font-bold mb-4 text-custom-blue">
+              Pour quel Business est-tu fait ?
+            </h1>
+          </div>
+          
           {!showContent ? (
             <div className="text-center mb-10">
-              <h1 className="text-4xl font-bold mb-4 text-custom-blue">
-                Pour quel Business est-tu fait ?
-              </h1>
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-custom-blue">
                 Quiz : Découvrez votre modèle business idéal
               </h2>
