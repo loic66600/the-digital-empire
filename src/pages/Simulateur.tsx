@@ -1,8 +1,8 @@
-
 import { useState } from "react";
 import Navbar from "@/components/ui/navbar";
-import { Calculator } from "lucide-react";
 import { EmailGate } from "@/components/EmailGate";
+import { Calculator } from "lucide-react";
+import { useToolsAccess } from "@/hooks/useToolsAccess";
 
 // Define the SimulationResult interface
 interface SimulationResult {
@@ -26,12 +26,12 @@ const frequencyOptions = [
 ];
 
 const Simulateur = () => {
+  const { hasAccess } = useToolsAccess();
   const [plateforme, setPlateforme] = useState(platformOptions[0].value);
   const [abonnes, setAbonnes] = useState(1000);
   const [frequence, setFrequence] = useState(frequencyOptions[0].value);
   const [revenuCible, setRevenuCible] = useState(3000);
   const [resultats, setResultats] = useState<SimulationResult | null>(null);
-  const [hasAccess, setHasAccess] = useState(false);
 
   if (!hasAccess) {
     return (
@@ -46,7 +46,7 @@ const Simulateur = () => {
               Estimez votre potentiel de revenus en fonction de votre audience et votre stratégie
             </p>
           </div>
-          <EmailGate source="simulator" onSuccess={() => setHasAccess(true)} />
+          <EmailGate source="simulator" onSuccess={() => {}} />
         </div>
       </div>
     );

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/ui/navbar";
 import { EmailGate } from "@/components/EmailGate";
+import { useToolsAccess } from "@/hooks/useToolsAccess";
 import { BookOpen, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -236,26 +237,7 @@ const profiles: ResultProfile[] = [
 ];
 
 const Quiz = () => {
-  const [hasAccess, setHasAccess] = useState(false);
-
-  if (!hasAccess) {
-    return (
-      <div className="min-h-screen flex flex-col bg-custom-off-white">
-        <Navbar />
-        <div className="container mx-auto px-4 py-12">
-          <div className="text-center mb-10">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4 text-custom-blue">
-              Quiz : Découvrez votre modèle business idéal
-            </h1>
-            <p className="text-lg text-gray-600">
-              Répondez à quelques questions pour identifier le business model qui vous correspond le mieux
-            </p>
-          </div>
-          <EmailGate source="quiz" onSuccess={() => setHasAccess(true)} />
-        </div>
-      </div>
-    );
-  }
+  const { hasAccess } = useToolsAccess();
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [responses, setResponses] = useState<Record<number, string>>({});
@@ -321,45 +303,19 @@ const Quiz = () => {
       
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto">
-          {!showResults ? (
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-              <div className="p-6 md:p-8">
-                <div className="mb-8">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-medium text-gray-500">
-                      Question {currentQuestion + 1} sur {questions.length}
-                    </span>
-                    <span className="text-sm font-medium text-custom-blue">
-                      {Math.round(progressPercentage)}%
-                    </span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2.5">
-                    <div 
-                      className="bg-custom-blue h-2.5 rounded-full transition-all duration-300" 
-                      style={{ width: `${progressPercentage}%` }}
-                    ></div>
-                  </div>
+          {!hasAccess ? (
+            <div className="min-h-screen flex flex-col bg-custom-off-white">
+              <Navbar />
+              <div className="container mx-auto px-4 py-12">
+                <div className="text-center mb-10">
+                  <h1 className="text-3xl md:text-4xl font-bold mb-4 text-custom-blue">
+                    Quiz : Découvrez votre modèle business idéal
+                  </h1>
+                  <p className="text-lg text-gray-600">
+                    Répondez à quelques questions pour identifier le business model qui vous correspond le mieux
+                  </p>
                 </div>
-                
-                <h2 className="text-2xl font-bold mb-6 text-custom-blue">
-                  {questions[currentQuestion].texte}
-                </h2>
-                
-                <div className="space-y-3">
-                  {questions[currentQuestion].options.map((option) => (
-                    <button
-                      key={option.id}
-                      onClick={() => handleAnswer(questions[currentQuestion].id, option.id)}
-                      className={`w-full text-left p-4 rounded-lg border border-gray-200 hover:border-custom-blue transition-colors duration-200 ${
-                        responses[questions[currentQuestion].id] === option.id
-                          ? "bg-custom-blue text-white"
-                          : "bg-white text-gray-700"
-                      }`}
-                    >
-                      {option.texte}
-                    </button>
-                  ))}
-                </div>
+                <EmailGate source="quiz" onSuccess={() => setHasAccess(true)} />
               </div>
             </div>
           ) : (

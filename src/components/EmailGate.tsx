@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useEmailSubscription } from "@/hooks/useEmailSubscription";
+import { useToolsAccess } from "@/hooks/useToolsAccess";
 import { Mail } from "lucide-react";
 
 interface EmailGateProps {
@@ -11,12 +12,13 @@ interface EmailGateProps {
 }
 
 export const EmailGate = ({ source, onSuccess }: EmailGateProps) => {
-  const { email, setEmail, loading, subscribeToNewsletter } = useEmailSubscription();
+  const { email, setEmail, loading } = useEmailSubscription();
+  const { grantAccess } = useToolsAccess();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const success = await subscribeToNewsletter(source);
+    const success = await grantAccess(email, source);
     if (success) {
       setIsSubmitted(true);
       onSuccess();

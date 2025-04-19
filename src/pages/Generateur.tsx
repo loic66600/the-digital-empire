@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "@/components/ui/navbar";
 import { EmailGate } from "@/components/EmailGate";
+import { useToolsAccess } from "@/hooks/useToolsAccess";
 import { List, Gift, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -107,7 +108,7 @@ const viralIdeas: IdeaType[] = [
 ];
 
 const Generateur = () => {
-  const [hasAccess, setHasAccess] = useState(false);
+  const { hasAccess, grantAccess } = useToolsAccess();
 
   if (!hasAccess) {
     return (
