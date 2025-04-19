@@ -6,14 +6,24 @@ import { toast } from '@/components/ui/use-toast';
 export const useEmailSubscription = () => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState<string | null>(null);
+
+  // RFC 5322 compliant email validation
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return emailRegex.test(email);
+  };
 
   const subscribeToNewsletter = async (source: 'quiz' | 'simulator' | 'mini-course' | 'ideas') => {
+    setEmailError(null);
+    
     if (!email) {
-      toast({
-        title: "Erreur",
-        description: "Veuillez entrer une adresse email valide",
-        variant: "destructive"
-      });
+      setEmailError("Veuillez entrer une adresse email");
+      return false;
+    }
+    
+    if (!validateEmail(email)) {
+      setEmailError("L'adresse saisie semble incorrecte. Veuillez vérifier votre email.");
       return false;
     }
 
@@ -26,11 +36,13 @@ export const useEmailSubscription = () => {
 
       if (error) {
         if (error.code === '23505') {
+          // Email déjà enregistré dans cette source, mais on continue comme si c'était un succès
           toast({
-            title: "Email déjà enregistré",
-            description: "Cet email a déjà été enregistré pour cette source",
+            title: "Email reconnu",
+            description: "Votre accès a été débloqué",
             variant: "default"
           });
+          return true;
         } else {
           throw error;
         }
@@ -40,7 +52,6 @@ export const useEmailSubscription = () => {
           description: "Merci de vous être inscrit !",
           variant: "default"
         });
-        setEmail('');
         return true;
       }
     } catch (error) {
@@ -49,6 +60,7 @@ export const useEmailSubscription = () => {
         description: "Une erreur est survenue. Veuillez réessayer.",
         variant: "destructive"
       });
+      setEmailError("Une erreur est survenue. Veuillez réessayer.");
     } finally {
       setLoading(false);
     }
@@ -59,6 +71,8 @@ export const useEmailSubscription = () => {
     email,
     setEmail,
     loading,
+    emailError,
+    setEmailError,
     subscribeToNewsletter
   };
 };

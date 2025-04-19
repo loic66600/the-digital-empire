@@ -1,10 +1,11 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useEmailSubscription } from "@/hooks/useEmailSubscription";
 import { useToolsAccess } from "@/hooks/useToolsAccess";
 import { Mail } from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 interface EmailGateProps {
   source: 'quiz' | 'simulator' | 'mini-course' | 'ideas';
@@ -12,16 +13,24 @@ interface EmailGateProps {
 }
 
 export const EmailGate = ({ source, onSuccess }: EmailGateProps) => {
-  const { email, setEmail, loading } = useEmailSubscription();
+  const { email, setEmail, loading, emailError, setEmailError, subscribeToNewsletter } = useEmailSubscription();
   const { grantAccess } = useToolsAccess();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [shake, setShake] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const success = await grantAccess(email, source);
+    setEmailError(null);
+    
+    const success = await subscribeToNewsletter(source);
     if (success) {
+      await grantAccess(email, source);
       setIsSubmitted(true);
       onSuccess();
+    } else if (emailError) {
+      // Show gentle shake animation
+      setShake(true);
+      setTimeout(() => setShake(false), 650);
     }
   };
 
@@ -47,12 +56,22 @@ export const EmailGate = ({ source, onSuccess }: EmailGateProps) => {
             type="email"
             placeholder="Votre email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              if (emailError) setEmailError(null);
+            }}
             required
-            className="w-full"
+            className={`w-full ${shake ? 'animate-gentle-shake' : ''} ${emailError ? 'border-red-300 focus-visible:ring-red-300' : ''}`}
             disabled={loading}
           />
+          
+          {emailError && (
+            <Alert variant="destructive" className="mt-2 py-2 bg-red-50 border-red-200 text-red-600">
+              <AlertDescription className="text-sm">{emailError}</AlertDescription>
+            </Alert>
+          )}
         </div>
+        
         <Button 
           type="submit" 
           className="w-full bg-custom-blue hover:bg-custom-light-blue transition-colors"
