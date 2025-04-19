@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "@/components/ui/navbar";
 import { EmailGate } from "@/components/EmailGate";
 import { useToolsAccess } from "@/hooks/useToolsAccess";
@@ -109,13 +109,13 @@ const viralIdeas: IdeaType[] = [
 
 const Generateur = () => {
   const { hasAccess, grantAccess } = useToolsAccess();
-  // Initialize all state hooks regardless of hasAccess condition
+  
   const [selectedPlatform, setSelectedPlatform] = useState("instagram");
   const [currentIdea, setCurrentIdea] = useState<IdeaType | null>(null);
   const [usedIdeas, setUsedIdeas] = useState<number[]>([]);
   
   const generateIdea = () => {
-    if (!hasAccess) return; // Early return if no access
+    if (!hasAccess) return;
     
     const platformIdeas = viralIdeas.filter(idea => idea.platform === selectedPlatform);
     const availableIdeas = platformIdeas.filter(idea => !usedIdeas.includes(idea.id));
@@ -138,7 +138,6 @@ const Generateur = () => {
     { value: "linkedin", label: "LinkedIn" },
   ];
 
-  // Render different content based on hasAccess
   if (!hasAccess) {
     return (
       <div className="min-h-screen flex flex-col bg-custom-off-white">
@@ -274,12 +273,14 @@ const Generateur = () => {
                   <p className="opacity-90 mb-4">
                     Accédez à notre banque de plus de 100 idées de contenu viral triées par niche et taux d'engagement. Mises à jour chaque mois selon les dernières tendances.
                   </p>
-                  <Link
-                    to="/offre"
+                  <a
+                    href="https://www.notion.so/1daef76d25118095b08bebc287c2d5d6?v=1daef76d251180df91d4000c5a913a42&pvs=4"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="bg-white text-custom-blue hover:bg-gray-100 transition-colors duration-300 inline-flex items-center font-medium py-2 px-4 rounded-md"
                   >
                     En savoir plus <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
+                  </a>
                 </div>
                 <div className="md:w-1/3 flex justify-center">
                   <div className="w-24 h-24 rounded-full bg-white/20 flex items-center justify-center">
