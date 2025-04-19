@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import Navbar from "@/components/ui/navbar";
 import { EmailGate } from "@/components/EmailGate";
@@ -230,10 +229,12 @@ const Generateur = () => {
                     </button>
                     
                     <Link
-                      to="/offre"
-                      className="btn-secondary py-3 px-6 flex-1 flex items-center justify-center"
+                      to="https://www.notion.so/1daef76d25118095b08bebc287c2d5d6?v=1daef76d251180df91d4000c5a913a42&pvs=4"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-white text-custom-blue hover:bg-gray-100 transition-colors duration-300 inline-flex items-center font-medium py-2 px-4 rounded-md"
                     >
-                      Accéder aux idées premium <Gift className="ml-2 h-5 w-5" />
+                      En savoir plus <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </div>
                 </div>
